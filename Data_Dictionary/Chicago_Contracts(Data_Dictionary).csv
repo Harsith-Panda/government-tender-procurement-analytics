@@ -1,0 +1,58 @@
+Data Dictionary,,,,
+Column Name,Data Type,Description,Example Value,Notes / Transformation
+Row ID,Number,Unique row identifier ,1,no change
+Purchase Order Description,Text,Short description of contract/PO,Annual office supplies,"Trim whitespace; fill missing with ""Not Provided"""
+Purchase Order (Contract) Number,Text,Primary contract identifier,CNTR-2021-001,Keep as unique key
+Revision Number,Number,Revision index for a contract (0 = initial),2,Used to compute revision frequency
+Specification Number,Text,Reference spec number (if any),SPEC-45,Preserve as text
+Contract Type,Text,Type of contract (Blanket/Standard/COMPTROLLER-OTHER),Blanket,Standardize casing and typos
+Start Date,Date,Contract effective date,2021-03-01,Standardize to date; create Start_Date_Clean
+End Date,Date,Contract end date ,2022-03-01,Standardize to date; create End_Date_Clean
+Approval Date,Date,Date when contract was approved in FMPS,2021-03-10,Standardize to date; create Approval_Date_Clean
+Department,Text,Department that issued the contract,Finance,"Trim + PROPER; fill missing ""Unknown"""
+Vendor Name,Text,Supplier name,Acme Supplies Ltd.,Trim + PROPER
+Vendor ID,Text,Supplier identifier,V-10023,Trim; combine with Vendor Name in Vendor_Key
+Address 1,Text,Primary vendor address line,123 Main St,"Trim; replace blanks with ""Address Not Provided"""
+City,Text,City of vendor,Chicago,"Trim + PROPER; fill ""Unknown City"""
+State,Text,State of vendor,IL,"Standardize to 2-letter uppercase; fill ""Unknown State"""
+Zip,Text,Postal code,60601,Format as 5-digit text; keep leading zeros
+Award Amount,Number,Monetary amount awarded for the row ,150000,Keep numeric; do NOT remove negatives/zeros
+Procurement Type,Text,Procurement sub-type ,Open Bid,"Fill missing with ""Not Specified"""
+Start Date Year,Number,Year extracted from Start_Date_Clean,2021,Derived
+Contract_Duration_Days,Number,Days between start and end (empty if no both dates),365,Derived
+Approval_Delay_Days,Number,Days between start and approval (Approval_Date - Start_Date),9,Derived
+Is_Zero_Award,Number,"1 if Award Amount = 0, else 0",1,Derived
+Is_Negative_Modification,Number,"1 if Award Amount < 0, else 0",1,Derived
+Is_High_Value,Number,"1 if Award Amount >= threshold (e.g., 100000), else 0",1,Derived
+Award_Category,Text,Segment contract by value / special cases,Large,Derived
+Vendor_Key,Text,Normalized vendor key (ID|Name),V-10023|ACME SUPPLIES LTD.,Derived
+Revision_Count_Per_Contract,Number,Number of rows for the same contract (raw count of revisions),3,Derived
+,,,,
+,,,,
+,,,,
+,,,,
+Cleaning Logs,,,,
+Column Name,Issue Found,Action Taken,,
+Purchase Order Description,"16 missing, inconsistent whitespace","Filled blanks with ""Not Provided"", trimmed",,
+Start Date,"657 missing, mixed formats","Created Start_Date_Clean using DATEVALUE; flagged blanks as """"",,
+End Date,"654 missing, ","Created End_Date_Clean; for standard contracts blank may be ""Not Applicable""",,
+Approval Date,0 but appears after Start,Date,,
+Department,212 missing,"Trimmed and filled blanks with ""Unknown""",,
+Vendor Name,"0 missing, inconsistent casing",Trimmed + UPPER to standardize,,
+Vendor ID,"0 missing, inconsistent whitespace",Trimmed,,
+Address 1,"150 missing, inconsistent whitespace","Trim + fill blanks with ""Address Not Provided""",,
+Address 2,9028 missing,HIGH NULL RATE → Remove,,
+City,"16 missing, spelling variants","Trim + UPPER; blanks → ""Unknown City""",,
+State,"7 missing, mixed full names/abbrev","Converted to 2-letter uppercase codes using mapping; blanks → ""Unknown State""",,
+Zip,"104 missing, numeric formatting issue",Format column as Plain Text and convert to 5-digit text,,
+Award Amount,"0 missing, contains zeros & negatives","Kept raw; created flags Is_Zero_Award, Is_Negative_Modification, Is_High_Value",,
+Procurement Type,5482 missing,"Filled blanks with ""Not Specified""",,
+Start Date Year,Missing in raw,source derived from Start_Date_Clean,,
+Contract_Duration_Days,Some contracts missing end date,Calculated as End - Start when both present,,
+Approval_Delay_Days,Initially negative due to wrong formula,Corrected to Approval - Start,,
+Is_Zero_Award,Derived,Flag for depends-upon (award=0),,
+Is_Negative_Modification,Derived,Flag for award_amount < 0,,
+Is_High_Value,Derived,Flag for award >= 3000000,,
+Award_Category,Derived,Segment award into Depends/Negative/Small/Medium/Large,,
+Vendor_Key,Derived,Normalized key combining Vendor ID and Name,,
+Revision_Count_Per_Contract,Derived,Count of rows per Purchase Order to show number of revisions,,
