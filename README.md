@@ -32,8 +32,7 @@ The goal is to determine:
 
 ### Google Sheets
 
-**Dashboard & Sheets (Link):**  
-https://docs.google.com/spreadsheets/d/1Cnf3jj6NT0suw8Ii0Rcd9aMXMn8todvxXGGIb1BfyuE/edit?usp=sharing
+**Dashboard & Sheets (Link):** https://docs.google.com/spreadsheets/d/1Cnf3jj6NT0suw8Ii0Rcd9aMXMn8todvxXGGIb1BfyuE/edit?usp=sharing
 
 ### Presentation (PPT)
 
