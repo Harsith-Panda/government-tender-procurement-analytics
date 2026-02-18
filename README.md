@@ -38,7 +38,11 @@ The goal is to determine:
 ### Presentation (PPT)
 
 **Presentation Link (Canva):**
-``
+`https://www.canva.com/design/DAHBqktf9KU/gl4VGIyCY7QLHRVtc-CvHA/edit?utm_content=DAHBqktf9KU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton`
+
+### Report Link (Docs):
+
+`https://docs.google.com/document/d/1lKtNJNxWMHo9pJEXWn3gXHEurFzSU1pqY21-om9-9GE/edit?tab=t.0`
 
 ---
 
