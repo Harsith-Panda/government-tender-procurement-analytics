@@ -25,8 +25,8 @@ Suggested screenshots:
 - Charts & slicers interaction
 
 ```md
-![Dashboard Screenshot](docs/dashboard.png)
-![Pivot Tables](docs/pivots.png)
+![Dashboard Screenshot](docs/dashboard.jpg)
+![Pivot Tables](docs/pivots.jpg)
 ```
 
 ---
@@ -40,23 +40,15 @@ Suggested screenshots:
 
 ## Project Files & Links
 
-### Google Sheets Dashboard
+### Google Sheets
 
-_(Add your shareable link here)_  
-**Dashboard:**  
-`<INSERT GOOGLE SHEETS LINK>`
-
-### Report PDF
-
-`Procurement Risk Spending Efficiency Analytics.pdf`
+**Dashboard & Sheets (Link):**  
+`https://docs.google.com/spreadsheets/d/1Cnf3jj6NT0suw8Ii0Rcd9aMXMn8todvxXGGIb1BfyuE/edit?usp=sharing`
 
 ### Presentation (PPT)
 
-`<INSERT PPT LINK>`
-
-### Dataset (Cleaned)
-
-`Chicago Contracts Analysis Cleaned Data.csv`
+**Presentation Link (Canva):**
+``
 
 ---
 
