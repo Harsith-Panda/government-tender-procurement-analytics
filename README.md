@@ -15,19 +15,9 @@ The goal is to determine:
 
 ## Dataset Analysis Screenshots
 
-_(Add images here after uploading to GitHub)_
-
-Suggested screenshots:
-
-- Cleaned dataset preview
-- Pivot tables sheet
-- KPI dashboard view
-- Charts & slicers interaction
-
-```md
 ![Dashboard Screenshot](docs/dashboard.jpg)
+
 ![Pivot Tables](docs/pivots.jpg)
-```
 
 ---
 
